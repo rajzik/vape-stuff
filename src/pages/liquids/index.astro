@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import PostPreview from '~/components/post-preview.astro';
+import Layout from '~/layouts/layout.astro';
+
+const allPosts = await getCollection('liquids', (post) => {
+  return import.meta.env.MODE !== 'production' || post.data.draft === false;
+});
+
+const sortedPosts = allPosts.sort((a, b) => {
+  return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf();
+});
+---
+
+<Layout>
+  <main>
+    <div class="page flex h-full w-full flex-col items-center">
+      <h1 class="pt-2 text-4xl font-bold">ASDFASDAS</h1>
+      <h2 class="px-8 text-center text-xl xl:px-0">ASDF</h2>
+      <div
+        class="grid w-full grid-cols-1 gap-4 p-4 lg:grid-cols-2 lg:p-8 xl:gap-8"
+      >
+        {sortedPosts.map((p) => <PostPreview post={p} />)}
+      </div>
+    </div>
+  </main>
+</Layout>
