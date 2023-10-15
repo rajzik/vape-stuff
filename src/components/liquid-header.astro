@@ -1,23 +1,36 @@
 ---
+import { Picture } from 'astro:assets';
 import { format } from 'date-fns';
-import type { Data } from '~/content/config';
+
+import type { LiquidCollectionData } from '~/content/config';
 
 const { post } = Astro.props;
 
 export interface Props {
-  post: Data;
+  post: LiquidCollectionData;
 }
 
-const date = post.date;
+const { date, title, image } = post;
+
 const formatted = format(date, 'LLLL d, yyyy');
 ---
 
 <div class="lg:w-[42rem] xl:w-[64rem]">
+  {
+    image && (
+      <Picture
+        src={image}
+        alt={`${title} cover image`}
+        width={520}
+      />
+    )
+  }
   <h2
     class="m-0 p-0 font-bold"
     style={'margin-block-end: 0; margin-block-start: 1rem;'}
+    transition:name="liquid-title"
   >
-    {post.title}
+    {title}
   </h2>
   <time datetime={date.toString()}>{formatted}</time>
 </div>

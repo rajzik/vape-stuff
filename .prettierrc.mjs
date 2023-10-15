@@ -7,7 +7,11 @@ export default {
   singleAttributePerLine: true,
   singleQuote: true,
   trailingComma: 'all',
-  plugins: ['prettier-plugin-tailwindcss', 'prettier-plugin-astro'],
+  plugins: [
+    '@ianvs/prettier-plugin-sort-imports',
+    'prettier-plugin-astro',
+    'prettier-plugin-tailwindcss',
+  ],
   overrides: [
     {
       files: '*.astro',
@@ -17,5 +21,8 @@ export default {
     },
   ],
   astroAllowShorthand: false,
-  tailwindConfig: "./tailwind.config.cjs",
+  tailwindConfig: './tailwind.config.cjs',
+  importOrder: ["<THIRD_PARTY_MODULES>", "", "^~/", "^[.][.]/", "^[.]/"],
+  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
+  importOrderTypeScriptVersion: "4.4.0",
 };

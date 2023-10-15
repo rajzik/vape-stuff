@@ -1,11 +1,23 @@
 ---
+import { Picture } from 'astro:assets';
+
 import { removeTrailingSlash } from '~/utils';
+import logoImage from '../images/logo.png';
 
 const pathname = removeTrailingSlash(Astro.url.pathname);
 ---
 
 <header class="z-40 flex w-full flex-col gap-2 md:flex-row md:justify-between">
-  <nav role="navigation">
+  <nav
+    class="flex w-full items-center justify-between "
+    role="navigation"
+  >
+    <Picture
+      src={logoImage}
+      title="Vape stuff logo"
+      alt="Vape stuff logo"
+      width={125}
+    />
     <ul class="flex flex-row gap-2">
       <li>
         <a
@@ -24,7 +36,7 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
           href="/liquids"
           class:list={{
             ['hover:text-neutral-100']: true,
-            ['text-neutral-100']: pathname === '/liquids',
+            ['text-neutral-100']: pathname.startsWith('/liquids'),
           }}
         >
           Liquids

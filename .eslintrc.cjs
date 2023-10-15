@@ -15,10 +15,13 @@ module.exports = {
   plugins: ['jsx-a11y', 'unicorn', 'prettier'],
 
   rules: {
+    'unicorn/filename-case': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'prettier/prettier': 'error',
   },
+
   reportUnusedDisableDirectives: true,
+
   env: {
     browser: true,
     es2020: true,
@@ -28,6 +31,28 @@ module.exports = {
   },
 
   overrides: [
+    {
+      files: ['*.mjs'],
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+      env: {
+        es2020: true,
+        node: true,
+      },
+    },
+    {
+      files: ['*.cjs'],
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'script',
+      },
+      env: {
+        es2020: true,
+        node: true,
+      },
+    },
     {
       files: ['*.js', '*.jsx'],
       parserOptions: {
@@ -87,10 +112,6 @@ module.exports = {
       rules: {
         // override/add rules settings here, such as:
         // "no-unused-vars": "error"
-
-        // If you are using "prettier/prettier" rule,
-        // you don't need to format inside <script> as it will be formatted as a `.astro` file.
-        'prettier/prettier': 'off',
       },
     },
   ],

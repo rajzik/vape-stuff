@@ -1,6 +1,7 @@
 ---
 import '@fontsource/open-sans';
 import '~/styles/tailwind.css';
+
 import Head, { type Props as HeadProps } from '~/components/head.astro';
 import Header from '~/components/header.astro';
 
@@ -12,15 +13,10 @@ export type Props = HeadProps;
   <Head {...Astro.props} />
 
   <body
-    class="mx-auto flex min-h-screen max-w-[872px] flex-col gap-9 bg-neutral-950 px-10 py-8 text-sm text-neutral-400 md:gap-20 md:py-16"
+    class="bg-neutral-950 text-neutral-400 mx-auto flex min-h-screen max-w-[872px] flex-col gap-9 px-10 py-8 text-sm md:gap-20 md:py-16"
   >
     <Header />
 
     <slot />
-    <style is:global>
-      html {
-        font-family: 'Open Sans';
-      }
-    </style>
   </body>
 </html>
