@@ -2,7 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 import LiquidHeader from '~/components/liquid-header.astro';
-import Layout from '~/layouts/layout.astro';
+import Layout from '~/layouts/page-layout.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('liquids');
@@ -32,7 +32,7 @@ const { Content } = await post.render();
 
 <Layout>
   <div class="max-w-full lg:w-[42rem] xl:w-[64rem]">
-    <article class="prose prose-lg max-w-none pb-10 lg:prose-xl">
+    <article class="prose prose-lg max-w-none pb-10">
       <LiquidHeader post={post.data} />
       <Content />
     </article>
