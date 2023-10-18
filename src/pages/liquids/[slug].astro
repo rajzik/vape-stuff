@@ -2,7 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 import LiquidHeader from '~/components/liquid-header.astro';
-import Layout from '~/page-layouts/page-layout.astro';
+import Layout from '~/layouts/page-layout.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('liquids');
